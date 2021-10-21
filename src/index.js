@@ -7,12 +7,23 @@ import {BrowserRouter} from 'react-router-dom';
 import store from './redux/store';
 
 
-ReactDOM.render(
-<BrowserRouter>
-    <App store={store} />
-</BrowserRouter>,
-  document.getElementById('root')
-);
+let rerender = (state) => {
+  ReactDOM.render(
+  <BrowserRouter>
+      <App state={state}  dispatch={store.dispatch.bind(store)} />
+  </BrowserRouter>,
+    document.getElementById('root')
+  );
+}
+
+rerender(store.getState());
+
+
+store.subscribe(() => {
+  let state = store.getState();
+  rerender(state);
+})
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

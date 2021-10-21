@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 function App(props) {
   return (
     <div className="App">
-      <Route exact path='/' render = {()=><Login />}/>
+      <Route exact path='/' render = {()=><Login login={props.state.login} dispatch={props.dispatch} />}/>
       <Route path='/profile' render = {()=><Profile />}/>
     </div>
   );

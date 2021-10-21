@@ -5,7 +5,7 @@ let initialState = {
     login: "developer21",
     password: "123456",
     enterLogin: "",
-    enterPass: "",
+    enterPass: "j",
     auto: false    
 };
 
@@ -13,7 +13,8 @@ const loginReducer = (state = initialState, action) => {
     switch(action.type) {
         case ENTER_LOGIN:
             return {
-                ...state
+                ...state,
+                enterLogin: action.newText
             }
         case ENTER_PASS:
             return state;    
@@ -21,5 +22,8 @@ const loginReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const enterLoginAC = (newText) => 
+    ({type:ENTER_LOGIN, newText});
 
 export default loginReducer;
