@@ -1,3 +1,22 @@
-.App {
-  text-align: center;
+.App {  
+  margin: 20px 30px;
+  font-size: 18px;
+} 
+
+.loginForm {
+  margin: 0 auto;
+  padding: 5px;
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.labelLog {
+  width: 70px;
+}
+
+.buttEnter {
+  margin: 5px 70px;
+  width: 100px;
+  font-size: 16px;
 }
