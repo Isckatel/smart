@@ -19,7 +19,7 @@ const Login = (props) => {
     const isButtDisabled = (props.login.login === props.login.enterLogin) && (props.login.password === props.login.enterPass);
 
     const goProfile = () => {
-        props.dispatch(toggleAuthAC());
+        props.dispatch(toggleAuthAC(true));
         history.push('/profile');
     }
 
