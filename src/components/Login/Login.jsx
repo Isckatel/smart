@@ -1,12 +1,26 @@
-import {enterLoginAC} from "../../redux/login-reducer";
+import {enterLoginAC, enterPassAC, toggleAuthAC} from "../../redux/login-reducer";
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
-    // let loginRef = React.createRef();
+    const history = useHistory();
 
-    let onLoginChange = (e) =>  {
+    const onLoginChange = (e) =>  {
         let str = e.target.value;
         let action =  enterLoginAC(str);
         props.dispatch(action);
+    }
+
+    const onPassChange =(e) => {
+        let str = e.target.value;
+        let action =  enterPassAC(str);
+        props.dispatch(action);
+    }
+
+    const isButtDisabled = (props.login.login === props.login.enterLogin) && (props.login.password === props.login.enterPass);
+
+    const goProfile = () => {
+        props.dispatch(toggleAuthAC());
+        history.push('/profile');
     }
 
     return (
@@ -18,9 +32,11 @@ const Login = (props) => {
             <div className ='inputLog'>
                 <input id='login' name='login' 
                     value = {props.login.enterLogin} onChange={onLoginChange} /><br />            
-                <input id='password' name='password' type='password' placeholder="Введите пароль" />
+                <input id='password' name='password' type='password'
+                    value = {props.login.enterPass} onChange={onPassChange} />
             </div>            
-            <button className='buttEnter'>Войти</button>
+            <button className='buttEnter' disabled={!isButtDisabled}
+            onClick={goProfile}>Войти</button>
         </div>
     );
 }

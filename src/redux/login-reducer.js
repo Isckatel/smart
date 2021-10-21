@@ -1,12 +1,13 @@
 const ENTER_LOGIN = "ENTER_LOGIN";
 const ENTER_PASS = "ENTER_PASS";
+const TOGGLE_AUTH ="TOGGLE_AUTH";
 
 let initialState = {
     login: "developer21",
     password: "123456",
     enterLogin: "",
-    enterPass: "j",
-    auto: false    
+    enterPass: "",
+    auth: false    
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -17,7 +18,15 @@ const loginReducer = (state = initialState, action) => {
                 enterLogin: action.newText
             }
         case ENTER_PASS:
-            return state;    
+            return {
+                ...state,
+                enterPass: action.newText
+            }
+        case TOGGLE_AUTH:
+            return {
+                ...state,
+                auth: !state.auth
+            }   
         default: 
             return state;
     }
@@ -25,5 +34,11 @@ const loginReducer = (state = initialState, action) => {
 
 export const enterLoginAC = (newText) => 
     ({type:ENTER_LOGIN, newText});
+
+export const enterPassAC = (newText) => 
+    ({type:ENTER_PASS, newText});
+    
+export const toggleAuthAC = () =>
+    ({type:TOGGLE_AUTH});
 
 export default loginReducer;
